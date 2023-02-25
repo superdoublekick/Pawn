@@ -15,8 +15,22 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        var horizontal = 0;
+        var vertical = 0;
+
         if(Input.GetKey(KeyCode.W))
-            rb.AddForce(transform.forward * movementSpeed);
-            
+            vertical = 1;
+        
+        if(Input.GetKey(KeyCode.S))
+            vertical = -1;
+
+        if(Input.GetKey(KeyCode.D))
+            horizontal = 1;
+        
+        if(Input.GetKey(KeyCode.A))
+            horizontal = -1;
+
+        var movementVector = new Vector3(horizontal * movementSpeed, rb.velocity.y, vertical * movementSpeed);
+        rb.velocity = movementVector;
     }
 }
