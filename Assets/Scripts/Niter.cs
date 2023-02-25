@@ -4,22 +4,31 @@ using UnityEngine;
 
 public class Niter: MonoBehaviour
 {
+    [SerializeField] private float movementSpeed;
 
-    private GroundCheck groundCheck;
+    private SurroundingCheck surrondingCheck;
     public float life = 3;
 
     void Awake()
     {
+        surrondingCheck = GetComponent<SurroundingCheck>();
+
         Destroy(gameObject, life);
     }
 
-    void OnCollisionEnter(Collision collision) 
+    private void Update()
     {
-        if(!groundCheck.OnGround) {
-            Destroy(collision.gameObject);
-            Destroy(gameObject);
-        }
+        Move();
+
+        if (!surrondingCheck.IsSomethingAround)
+            return;
+
+        var target = surrondingCheck.DetectedColliders[0].transform;
+        Destroy(target.gameObject);
     }
 
-    
+    private void Move()
+    {
+        transform.position = transform.position + Vector3.forward * movementSpeed * Time.deltaTime;
+    }
 }

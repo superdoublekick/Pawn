@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2776663336313638385}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.09, y: -1.12, z: 1.912}
-  m_LocalScale: {x: 0.1, y: 0.01, z: 0.01}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5701731600065455633}
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: e729c40e3536518a69d8372324f47e08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -122,7 +122,7 @@ Transform:
   m_GameObject: {fileID: 6454708596356659710}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 490170028817200173}
@@ -139,6 +139,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7842592091064935091}
   - component: {fileID: 2566844239862659506}
+  - component: {fileID: 8125364100165859622}
   - component: {fileID: 957471241150532999}
   m_Layer: 0
   m_Name: FiringMaterial
@@ -179,6 +180,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8125364100165859622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7838135644184781116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21edab20915a5f42985c85be81b07833, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  offset: {x: 0, y: 0, z: 0}
+  checkRadius: 0.15
 --- !u!114 &957471241150532999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,4 +209,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e1a405d12809194ebfd4870590dc6ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementSpeed: 10
   life: 3
