@@ -6,9 +6,12 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private int movementSpeed;
 
+    private bool isInAir;
+
     private Rigidbody rb;
     void Start()
     {
+        isInAir = false;
         rb = GetComponent<Rigidbody>();
     }
 
@@ -17,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     {
         var horizontal = 0;
         var vertical = 0;
+        var jump = rb.velocity.y;
 
         if(Input.GetKey(KeyCode.W))
             vertical = 1;
@@ -30,7 +34,14 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetKey(KeyCode.A))
             horizontal = -1;
 
-        var movementVector = new Vector3(horizontal * movementSpeed, rb.velocity.y, vertical * movementSpeed);
+        if(Input.GetKey(KeyCode.Space) && !isInAir) 
+        {
+            isInAir = true;
+            jump = 1 * movementSpeed;
+        }
+
+        var movementVector = new Vector3(horizontal * movementSpeed, jump, vertical * movementSpeed);
         rb.velocity = movementVector;
+
     }
 }
