@@ -8,15 +8,13 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody rb;
 
-    private GroundCheck groundCheck;
+    private SurroundingCheck surroundingCheck;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        groundCheck = GetComponent<GroundCheck>();
-        
+        surroundingCheck = GetComponent<SurroundingCheck>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         var horizontal = 0;
@@ -25,22 +23,20 @@ public class PlayerMovement : MonoBehaviour
 
         if(Input.GetKey(KeyCode.W))
             vertical = 1;
-        
+
         if(Input.GetKey(KeyCode.S))
             vertical = -1;
 
         if(Input.GetKey(KeyCode.D))
             horizontal = 1;
-        
+
         if(Input.GetKey(KeyCode.A))
             horizontal = -1;
 
-        if(Input.GetKey(KeyCode.Space) && groundCheck.OnGround) 
+        if(Input.GetKey(KeyCode.Space) && surroundingCheck.IsSomethingAround)
             jump = 1 * movementSpeed;
 
         var movementVector = new Vector3(horizontal * movementSpeed, jump, vertical * movementSpeed);
         rb.velocity = movementVector;
-        
-
     }
 }
