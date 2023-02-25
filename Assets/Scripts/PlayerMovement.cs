@@ -6,13 +6,14 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private int movementSpeed;
 
-    private bool isInAir;
-
     private Rigidbody rb;
+
+    private GroundCheck groundCheck;
     void Start()
     {
-        isInAir = false;
         rb = GetComponent<Rigidbody>();
+        groundCheck = GetComponent<GroundCheck>();
+        
     }
 
     // Update is called once per frame
@@ -34,14 +35,12 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetKey(KeyCode.A))
             horizontal = -1;
 
-        if(Input.GetKey(KeyCode.Space) && !isInAir) 
-        {
-            isInAir = true;
+        if(Input.GetKey(KeyCode.Space) && groundCheck.OnGround) 
             jump = 1 * movementSpeed;
-        }
 
         var movementVector = new Vector3(horizontal * movementSpeed, jump, vertical * movementSpeed);
         rb.velocity = movementVector;
+        
 
     }
 }
